@@ -1,0 +1,93 @@
+{% extends "base.html" %} 
+
+{% block content %}
+<body>
+<div class="container">
+    <h1 class="title">Submit a Rating</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="driver" style="color: #00ff00; font-family: 'Press Start 2P', cursive;">Driver ID:</label>
+            <input type="text" id="driver" name="driver" class="form-control" required value="{{latest_version}}">
+        </div>
+        <div class="form-group">
+            <label for="name" style="color: #00ff00; font-family: 'Press Start 2P', cursive;">Reviewer Name:</label>
+            <input type="text" id="name" name="name" class="form-control" value="Anonymous">
+        </div>
+        <div class="form-group">
+            <label for="rating" style="color: #00ff00; font-family: 'Press Start 2P', cursive;">Rating Score (0-5):</label>
+            <input type="number" id="rating" name="rating" class="form-control" min="0" max="5" required>
+        </div>
+        <div class="form-group">
+            <label for="comment" style="color: #00ff00; font-family: 'Press Start 2P', cursive;">Comment:</label>
+            <textarea id="comment" name="comment" class="form-control" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="rating" style="color: #00ff00; font-family: 'Press Start 2P', cursive;">Linux Distro (Arch, Debian, etc.)</label>
+            <input type="text" id="distro" name="distro" class="form-control" min="0" max="5" required>
+        </div>
+        <div class="form-group">
+            <label for="date" style="color: #00ff00; font-family: 'Press Start 2P', cursive;">Email:</label>
+            <input type="text" id="email" name="email" class="form-control">
+            <p style="font-size: small; color: #fff;">*Add your email if you want to be notified of new driver releases, so you can update and rate the new driver.</p>
+        </div>
+        <input type="hidden" id="date" name="date">
+        <button type="submit" class="btn btn-primary">Submit Rating</button>
+    </form>
+</div>
+</body>
+
+<script>
+    document.getElementById('date').value = new Date().toISOString().split('T')[0];
+</script>
+
+<style>
+    body {
+        background-color: #333;
+        font-family: 'Press Start 2P', cursive;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #333;
+        border-radius: 10px;
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+    }
+    .title {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #00ff00;
+        font-family: 'Press Start 2P', cursive;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #444;
+        border-radius: 5px;
+        background-color: #222;
+        color: #fff;
+        transition: border-color 0.2s;
+    }
+    .form-control:focus {
+        border-color: #00ff00;
+    }
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #00ff00;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    .btn:hover {
+        background-color: #00cc00;
+    }
+</style>
+{% endblock %}
